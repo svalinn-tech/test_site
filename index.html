@@ -1,370 +1,1011 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Как читать расклады таро без ошибок? NEW</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Искусство Чтения Поля | Academy Lykova</title>
     
-    <meta property="og:url" content="https://web.academy-lykova.ru/taro_new" />
-    <meta property="og:title" content="Как читать расклады таро без ошибок? NEW" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://thb.tildacdn.com/tild3765-3962-4034-b137-613035376263/Frame_961_1.png" />
-    <link rel="shortcut icon" href="https://static.tildacdn.com/tild6163-3966-4437-a236-353433643135/208.ico" type="image/x-icon"/>
-
+    <!-- Google Fonts: Cormorant Garamond & Manrope -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
+    <!-- Библиотека анимаций при скролле AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* === ПАЛИТРА ИЗ ТВОЕГО КОДА ТИЛЬДЫ === */
+        /* ==========================================================================
+           1. ПЕРЕМЕННЫЕ И БАЗОВЫЕ СТИЛИ (Cyber-Mysticism)
+           ========================================================================== */
         :root {
-            --bg-deep-blue: #0f1c48;
+            --bg-dark-1: #060913;
+            --bg-blue: #0f1c48;
             --bg-purple: #243caa;
-            --accent-light: #f3e8ff; /* Цвет плашек из твоего кода */
-            --accent-purple: #aba0ff; /* Цвет сфер из твоего кода */
-            --text-main: #ffffff;
-            --text-dark: #000000;
+            --accent-lavender: #aba0ff;
+            --accent-neon-blue: #00d2ff;
+            --btn-light: #f3e8ff;
+            --text-white: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.65);
             --font-heading: 'Cormorant Garamond', serif;
             --font-body: 'Manrope', sans-serif;
+            --glass-bg: rgba(255, 255, 255, 0.02);
+            --glass-border: rgba(255, 255, 255, 0.06);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             font-family: var(--font-body);
-            color: var(--text-main);
-            background: linear-gradient(135deg, var(--bg-deep-blue) 0%, var(--bg-purple) 100%);
-            background-attachment: fixed;
+            background-color: var(--bg-dark-1);
+            color: var(--text-white);
             overflow-x: hidden;
             line-height: 1.6;
         }
 
-        img { max-width: 100%; height: auto; }
-        a { text-decoration: none; }
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
 
-        /* === АБСТРАКТНЫЕ СФЕРЫ (ИЗ ТВОЕГО КОДА filter:blur(50px)) === */
+        /* ==========================================================================
+           2. GLOWING ORBS ANIMATION (Живой анимированный фон)
+           ========================================================================== */
         .ambient-orbs {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
-            overflow: hidden;
             pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-blue) 50%, #0c051c 100%);
         }
+
         .orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.6;
-            animation: float 20s infinite alternate ease-in-out;
+            filter: blur(120px);
+            opacity: 0.45;
+            will-change: transform;
+            animation: floatOrbs 25s infinite alternate ease-in-out;
         }
+
         .orb-1 {
-            background-color: var(--accent-purple);
-            width: 600px; height: 600px;
-            top: -10%; left: -10%;
+            background: var(--accent-lavender);
+            width: 550px;
+            height: 550px;
+            top: -10%;
+            left: -5%;
         }
+
         .orb-2 {
-            background-color: rgba(28,0,119,0.8);
-            width: 800px; height: 800px;
-            bottom: -20%; right: -10%;
-            animation-delay: -5s;
+            background: var(--bg-purple);
+            width: 700px;
+            height: 700px;
+            bottom: -15%;
+            right: -10%;
+            animation-delay: -7s;
         }
+
         .orb-3 {
-            background-color: #5d3ec8;
-            width: 400px; height: 400px;
-            top: 40%; left: 50%;
-            animation-delay: -10s;
+            background: var(--accent-neon-blue);
+            width: 400px;
+            height: 400px;
+            top: 40%;
+            left: 60%;
+            animation-delay: -14s;
         }
 
-        @keyframes float {
+        @keyframes floatOrbs {
             0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(50px, 30px) scale(1.1); }
-            100% { transform: translate(-30px, 50px) scale(0.9); }
+            50% { transform: translate(60px, 40px) scale(1.15); opacity: 0.6; }
+            100% { transform: translate(-40px, 80px) scale(0.9); }
         }
 
-        /* === КНОПКИ (ДИЗАЙН ПОД ТВОЙ ЦВЕТ #f3e8ff) === */
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--accent-light);
-            color: var(--text-dark);
-            font-size: 1.125rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            padding: 20px 45px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(243, 232, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-primary:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(243, 232, 255, 0.5);
-            background-color: #ffffff;
-        }
-
-        /* === ГЛАВНЫЙ ЭКРАН (HERO) === */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 100px 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Фон из твоего кода */
-        .hero::before {
-            content: '';
+        /* Текстурный оверлей из ТЗ */
+        .texture-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://thb.tildacdn.com/tild3930-3366-4537-b964-353762643236/Frame_688_1.png');
             background-size: cover;
             background-position: center;
-            opacity: 0.15;
-            z-index: -1;
+            opacity: 0.04;
             mix-blend-mode: overlay;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
+        /* ==========================================================================
+           3. КНОПКИ И ЭЛЕМЕНТЫ ИНТЕРФЕЙСА
+           ========================================================================== */
+        .btn-premium {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--btn-light);
+            color: #060913;
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 22px 48px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(171, 160, 255, 0.25);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 50px rgba(171, 160, 255, 0.45);
+        }
+
+        .btn-premium:hover::before {
+            left: 100%;
+        }
+
+        .badge {
+            display: inline-flex;
+            padding: 8px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-lavender);
+            margin-bottom: 24px;
+        }
+
+        /* ==========================================================================
+           ЭКРАН 1: HERO SCREEN (Премиальное позиционирование)
+           ========================================================================== */
+        .top-bar {
+            padding: 30px 0;
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            z-index: 10;
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 140px;
+            padding-bottom: 80px;
+            overflow: hidden;
+        }
+
+        .hero-parallax-bg {
+            position: absolute;
+            top: -10%; left: 0; width: 100%; height: 120%;
+            background-image: url('https://images.unsplash.com/photo-1633519803157-12d7c0886e08?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
         }
 
         .hero-content {
-            text-align: center;
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
-        }
-
-        .pre-title {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 8px 24px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            color: var(--accent-light);
+            text-align: center;
         }
 
         .hero h1 {
             font-family: var(--font-heading);
-            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-size: clamp(2.8rem, 6.5vw, 5.6rem);
             line-height: 1.1;
-            margin-bottom: 24px;
-            font-weight: 700;
+            font-weight: 400;
+            margin-bottom: 28px;
+            letter-spacing: -1px;
         }
+
         .hero h1 span {
             font-style: italic;
-            color: var(--accent-purple);
+            font-weight: 400;
+            color: var(--accent-lavender);
+            position: relative;
+            display: inline-block;
         }
 
         .hero p {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            opacity: 0.9;
-            max-width: 650px;
-            margin: 0 auto 50px;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            font-weight: 300;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto 48px;
         }
 
-        /* === СЕКЦИЯ КОНТЕНТА И КАРТИНКА ИЗ ТВОЕГО ОГ-МЕТА === */
-        .about-section {
-            padding: 100px 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 40px;
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
-        }
-
-        .about-text h2 {
-            font-family: var(--font-heading);
-            font-size: clamp(2.5rem, 4vw, 3.5rem);
-            margin-bottom: 30px;
-            line-height: 1.2;
-        }
-
-        .about-text p {
-            font-size: 1.125rem;
-            opacity: 0.8;
-            margin-bottom: 20px;
-        }
-
-        .about-image {
-            position: relative;
-        }
-        
-        .about-image img {
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            width: 100%;
-            /* Картинка из твоего OG тега, но в хорошем качестве */
-            content: url('https://thb.tildacdn.com/tild3765-3962-4034-b137-613035376263/Frame_961_1.png');
-        }
-
-        .about-image::after {
-            content: '';
-            position: absolute;
-            inset: -20px;
-            border: 1px solid var(--accent-purple);
-            border-radius: 30px;
-            z-index: -1;
-            opacity: 0.5;
-            transition: all 0.5s ease;
-        }
-        .about-image:hover::after {
-            inset: -10px;
-            opacity: 1;
-            background: rgba(171, 160, 255, 0.1);
-        }
-
-        /* === БЕГУЩАЯ СТРОКА (ВАУ-ЭФФЕКТ) === */
-        .ticker {
-            background: var(--accent-light);
-            color: var(--text-dark);
-            padding: 20px 0;
+        /* ==========================================================================
+           БЕГУЩАЯ СТРОКА (TICKER)
+           ========================================================================== */
+        .ticker-container {
+            background: linear-gradient(90deg, var(--bg-purple) 0%, var(--bg-blue) 100%);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 22px 0;
             overflow: hidden;
             display: flex;
             white-space: nowrap;
-            transform: rotate(-2deg) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: rotate(-2.5deg) scale(1.03);
             position: relative;
-            z-index: 10;
-            margin: 50px 0;
+            z-index: 5;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            margin-bottom: 60px;
         }
-        .ticker-track {
+
+        .ticker-wrap {
             display: flex;
-            animation: ticker 15s linear infinite;
+            animation: tickerAnimation 22s linear infinite;
         }
-        .ticker-item {
+
+        .ticker-wrap span {
             font-family: var(--font-heading);
-            font-size: 1.8rem;
-            font-weight: 700;
+            font-size: clamp(1.4rem, 2.5vw, 2rem);
+            font-weight: 600;
             text-transform: uppercase;
+            letter-spacing: 3px;
             padding: 0 40px;
-        }
-        @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
         }
 
-        /* === АДАПТИВНОСТЬ (МОБИЛЬНАЯ ВЕРСИЯ) === */
+        .ticker-wrap span::after {
+            content: '✦';
+            margin-left: 80px;
+            color: var(--accent-neon-blue);
+        }
+
+        @keyframes tickerAnimation {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
+        }
+
+        /* ==========================================================================
+           ЭКРАН 2: АГИТАЦИЯ БОЛЕЙ (Bento Grid c 3D-Tilt эффектом)
+           ========================================================================== */
+        .section-title-wrap {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title-wrap h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        .section-title-wrap h2 span {
+            font-style: italic;
+            color: var(--accent-lavender);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+            margin-bottom: 120px;
+        }
+
+        .bento-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .bento-card:hover {
+            border-color: rgba(171, 160, 255, 0.4);
+            box-shadow: 0 30px 60px rgba(36, 60, 170, 0.2);
+        }
+
+        .bento-card .card-num {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--accent-neon-blue);
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .bento-card h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 16px;
+            transform: translateZ(30px);
+        }
+
+        .bento-card p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            transform: translateZ(15px);
+        }
+
+        /* Размеры ячеек Bento */
+        .cell-w-8 { grid-column: span 8; }
+        .cell-w-4 { grid-column: span 4; }
+        .cell-w-6 { grid-column: span 6; }
+
+        /* ==========================================================================
+           ЭКРАН 3: ИНТЕРАКТИВНАЯ ПРОГРАММА (Премиум Аккордеоны)
+           ========================================================================== */
+        .program-section {
+            padding: 40px 0 120px;
+        }
+
+        .accordion-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 0;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .accordion-header-left {
+            display: flex;
+            align-items: baseline;
+            gap: 32px;
+        }
+
+        .accordion-header .index {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--accent-neon-blue);
+        }
+
+        .accordion-header h3 {
+            font-family: var(--font-heading);
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 400;
+            transition: color 0.4s ease;
+        }
+
+        .accordion-icon {
+            width: 36px;
+            height: 36px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.4s ease;
+        }
+
+        .accordion-icon::before, .accordion-icon::after {
+            content: '';
+            position: absolute;
+            background-color: var(--text-white);
+            transition: background-color 0.4s ease;
+        }
+
+        .accordion-icon::before { width: 18px; height: 2px; }
+        .accordion-icon::after { width: 2px; height: 18px; }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .accordion-content-inner {
+            padding-left: 56px;
+            padding-bottom: 36px;
+            max-width: 750px;
+        }
+
+        .accordion-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* Состояния при раскрытии */
+        .accordion-item.active .accordion-header h3 {
+            color: var(--accent-lavender);
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .accordion-item.active .accordion-icon::before,
+        .accordion-item.active .accordion-icon::after {
+            background-color: var(--accent-lavender);
+        }
+
+        /* ==========================================================================
+           ЭКРАН 4: ОБ АВТОРЕ И ДОВЕРИЕ (Премиум Сплит)
+           ========================================================================== */
+        .author-section {
+            padding: 60px 0 120px;
+        }
+
+        .split-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .author-info h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 32px;
+        }
+
+        .author-info h2 span {
+            font-style: italic;
+            color: var(--accent-lavender);
+        }
+
+        .author-bullets {
+            list-style: none;
+        }
+
+        .author-bullets li {
+            position: relative;
+            padding-left: 32px;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .author-bullets li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-neon-blue);
+            font-size: 1rem;
+        }
+
+        .author-media {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-container {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(36, 60, 170, 0.4);
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .image-container img {
+            width: 100%;
+            display: block;
+            transition: transform 0.6s ease;
+            content: url('https://thb.tildacdn.com/tild3765-3962-4034-b137-613035376263/Frame_961_1.png');
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(171, 160, 255, 0.3);
+            border-radius: 40px;
+            pointer-events: none;
+        }
+
+        .image-container:hover {
+            transform: scale(1.02);
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* ==========================================================================
+           ЭКРАН 5: CTA / OFFER (Закрытие на сделку)
+           ========================================================================== */
+        .cta-section {
+            padding: 60px 0 140px;
+            text-align: center;
+        }
+
+        .offer-box {
+            background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(36,60,170,0.05) 100%);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 48px;
+            padding: 80px 40px;
+            max-width: 950px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.4);
+        }
+
+        .offer-box h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.6rem, 5vw, 4.5rem);
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .offer-box h2 span {
+            font-style: italic;
+            color: var(--accent-lavender);
+        }
+
+        .offer-box .sub {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .price-container {
+            margin-bottom: 48px;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-neon-blue);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .price-value {
+            font-family: var(--font-heading);
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--text-white);
+        }
+
+        .btn-pulse {
+            animation: pulseBtn 2.5s infinite;
+        }
+
+        @keyframes pulseBtn {
+            0% { box-shadow: 0 0 0 0 rgba(171, 160, 255, 0.5); }
+            70% { box-shadow: 0 0 0 25px rgba(171, 160, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(171, 160, 255, 0); }
+        }
+
+        .offer-footer-info {
+            margin-top: 36px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 300;
+        }
+
+        .info-item::before {
+            content: '✓';
+            color: var(--accent-neon-blue);
+            font-weight: bold;
+        }
+
+        /* Подвал */
+        footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+            font-weight: 300;
+        }
+
+        /* ==========================================================================
+           4. МУЛЬТИПЛАТФОРМЕННЫЙ MOBILE-FIRST АДАПТИВ
+           ========================================================================== */
         @media (max-width: 992px) {
-            .glass-panel {
+            .cell-w-8, .cell-w-4, .cell-w-6 {
+                grid-column: span 12;
+            }
+
+            .bento-grid {
+                gap: 16px;
+            }
+
+            .split-wrapper {
                 grid-template-columns: 1fr;
-                padding: 40px 20px;
-                gap: 40px;
+                gap: 50px;
             }
-            .about-image {
-                order: -1; /* Картинка сверху на мобилках */
+
+            .author-media {
+                order: -1; /* Картинка автора выше текста на планшетах/мобилках */
             }
-            .orb-1 { width: 400px; height: 400px; }
-            .orb-2 { width: 500px; height: 500px; }
+
+            .accordion-content-inner {
+                padding-left: 0;
+            }
+            
+            .accordion-header-left {
+                gap: 20px;
+            }
         }
 
-        @media (max-width: 480px) {
-            .btn-primary { width: 100%; padding: 20px; }
-            .ticker { transform: rotate(-3deg) scale(1.1); margin: 30px 0; }
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .hero {
+                padding-top: 160px;
+            }
+
+            .bento-card {
+                padding: 32px 24px;
+                border-radius: 24px;
+            }
+
+            .offer-box {
+                padding: 60px 24px;
+                border-radius: 32px;
+            }
+
+            /* Кнопки во всю ширину экрана по ТЗ */
+            .btn-premium {
+                width: 100%;
+                padding: 20px 24px;
+                font-size: 0.9rem;
+            }
+
+            .offer-footer-info {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+                max-width: 280px;
+                margin: 32px auto 0;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- Живой интерактивный фон -->
     <div class="ambient-orbs">
         <div class="orb orb-1"></div>
         <div class="orb orb-2"></div>
         <div class="orb orb-3"></div>
+        <div class="texture-overlay"></div>
     </div>
 
+    <!-- ТОР БАР -->
+    <header class="top-bar">
+        <div class="container">
+            <div class="logo">Academy Lykova</div>
+            <div class="badge" style="margin-bottom: 0;">Поток 2026</div>
+        </div>
+    </header>
+
+    <!-- ЭКРАН 1: HERO SCREEN -->
     <section class="hero">
+        <div class="hero-parallax-bg" id="heroBg"></div>
         <div class="container">
-            <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
-                <div class="pre-title">Новый формат 2026</div>
-                <h1>Как читать расклады таро <br><span>без ошибок</span></h1>
-                <p>Academy Lykova представляет: откажитесь от заучивания трактовок. Пробудите интуицию и научитесь видеть истинную картину поля.</p>
-                <a href="#program" class="btn-primary">Присоединиться к курсу</a>
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1400">
+                <div class="badge">Премиальное обучение</div>
+                <h1>Как читать расклады Таро <br><span>без ошибок</span> и сомнений</h1>
+                <p>Хватит бесконечно заучивать шаблонные трактовки из книг. Начните видеть карты как единую потоковую историю через интуитивное считывание информационного поля.</p>
+                <a href="#offer" class="btn-premium">Получить доступ</a>
             </div>
         </div>
     </section>
 
-    <div class="ticker">
-        <div class="ticker-track">
-            <div class="ticker-item">АВТОРСКАЯ МЕТОДИКА</div>
-            <div class="ticker-item">✧</div>
-            <div class="ticker-item">ГЛУБОКОЕ ЧТЕНИЕ ПОЛЯ</div>
-            <div class="ticker-item">✧</div>
-            <div class="ticker-item">БЕЗОПАСНОСТЬ ТАРОЛОГА</div>
-            <div class="ticker-item">✧</div>
-            <div class="ticker-item">АВТОРСКАЯ МЕТОДИКА</div>
-            <div class="ticker-item">✧</div>
-            <div class="ticker-item">ГЛУБОКОЕ ЧТЕНИЕ ПОЛЯ</div>
-            <div class="ticker-item">✧</div>
-            <div class="ticker-item">БЕЗОПАСНОСТЬ ТАРОЛОГА</div>
-            <div class="ticker-item">✧</div>
+    <!-- БЕГУЩАЯ СТРОКА -->
+    <div class="ticker-container">
+        <div class="ticker-wrap">
+            <span>Искусство Чтения Поля</span>
+            <span>Глубинные Связки Арканов</span>
+            <span>Интуитивное Мышление</span>
+            <span>Высокий Чек Мастера</span>
+            <!-- Повтор для непрерывности цикла -->
+            <span>Искусство Чтения Поля</span>
+            <span>Глубинные Связки Арканов</span>
+            <span>Интуитивное Мышление</span>
+            <span>Высокий Чек Мастера</span>
         </div>
     </div>
 
-    <section class="about-section" id="program">
+    <!-- ЭКРАН 2: АГИТАЦИЯ БОЛЕЙ (Bento Grid) -->
+    <section class="container" style="padding-top: 60px;">
+        <div class="section-title-wrap" data-aos="fade-up">
+            <h2>Почему ваши расклады <br>все еще <span>не идеальны</span>?</h2>
+        </div>
+        
+        <div class="bento-grid">
+            <div class="bento-card cell-w-8" data-aos="fade-up" data-aos-delay="100">
+                <span class="card-num">01</span>
+                <h3>Синдром чистого листа</h3>
+                <p>Вы делаете расклад, смотрите на карты и чувствуете ступор. Значения отдельных арканов всплывают в голове, но они не складываются в понятный и точный ответ для клиента.</p>
+            </div>
+            
+            <div class="bento-card cell-w-4" data-aos="fade-up" data-aos-delay="200">
+                <span class="card-num">02</span>
+                <h3>Страх перевернутых карт</h3>
+                <p>Паника при виде перевернутых позиций или сложных арканов (Смерть, Башня, Дьявол). Боязнь сказать лишнее или напугать кверента.</p>
+            </div>
+            
+            <div class="bento-card cell-w-4" data-aos="fade-up" data-aos-delay="300">
+                <span class="card-num">03</span>
+                <h3>Разрозненные трактовки</h3>
+                <p>Чтение карт по отдельности. Из-за этого общая картина разваливается, предсказания сбываются наполовину, а клиенты не возвращаются снова.</p>
+            </div>
+            
+            <div class="bento-card cell-w-8" data-aos="fade-up" data-aos-delay="400">
+                <span class="card-num">04</span>
+                <h3>Потолок в чеке и неуверенность</h3>
+                <p>Страх брать за консультации достойные деньги. Постоянное ощущение, что нужно доучить еще одну теорию, пройти еще один курс по базовым значениям, чтобы заявить о себе как о Профессионале.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЭКРАН 3: ИНТЕРАКТИВНАЯ ПРОГРАММА (Аккордеоны) -->
+    <section class="program-section">
         <div class="container">
-            <div class="glass-panel" data-aos="fade-up" data-aos-duration="1000">
-                <div class="about-text" data-aos="fade-right" data-aos-delay="200">
-                    <h2>Больше никаких <br><span style="color: var(--accent-purple); font-style: italic;">страхов</span> перед картами</h2>
-                    <p>Мы полностью переработали подход к обучению. Вы получите не просто словарь значений, а систему, которая работает на уровне энергии и подсознания.</p>
-                    <p>Этот курс создан для тех, кто хочет читать расклады уверенно, экологично и максимально точно для своих кверентов.</p>
-                    <br>
-                    <a href="#" class="btn-primary" style="padding: 15px 35px; font-size: 1rem;">Узнать подробности</a>
+            <div class="section-title-wrap" data-aos="fade-up">
+                <h2>Архитектура вашей <span>трансформации</span></h2>
+            </div>
+            
+            <div class="accordion-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <!-- Модуль 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-header-left">
+                            <span class="index">Модуль I</span>
+                            <h3>Считывание Информационного Поля</h3>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Вход в потоковое состояние. Техники отключения внутреннего критика при прочтении карт. Активация интуитивных каналов восприятия визуальных образов.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="about-image" data-aos="fade-left" data-aos-delay="400">
-                    <img alt="Расклады Таро Lykova Academy">
+
+                <!-- Модуль 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-header-left">
+                            <span class="index">Модуль II</span>
+                            <h3>Глубинные Связки Арканов</h3>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Синтез значений. Как читать триплеты и сложные многоуровневые расклады как связный текст. Влияние соседних карт на итоговый прогноз.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Модуль 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <div class="accordion-header-left">
+                            <span class="index">Модуль III</span>
+                            <h3>Энергобезопасность и Масштаб Мастера</h3>
+                        </div>
+                        <div class="accordion-icon"></div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Защита от выгорания и перехвата чужого негатива. Позиционирование дорогого мастера. Специфика работы с VIP-запросами и экологичный выход на высокие чеки.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer style="text-align: center; padding: 40px 20px; opacity: 0.6; font-size: 0.875rem; position: relative; z-index: 2;">
+    <!-- ЭКРАН 4: ОБ АВТОРЕ -->
+    <section class="author-section">
         <div class="container">
-            <p>&copy; 2026 Academy Lykova. Все права защищены. Разработано с фокусом на конверсию.</p>
+            <div class="split-wrapper">
+                <div class="author-info" data-aos="fade-right">
+                    <h2>Ваш проводник в <span>системное</span> Таро</h2>
+                    <ul class="author-bullets">
+                        <li>Основательница международной Academy Lykova с тысячами выпускников по всему миру.</li>
+                        <li>Автор уникальной методики синергии классической школы Таро и квантовой психологии.</li>
+                        <li>Практикующий эксперт с многолетним стажем работы с топовыми предпринимателями, блогерами и политиками.</li>
+                        <li>Помогает мастерам выстроить стабильный поток клиентов без вечной работы за копейки.</li>
+                    </ul>
+                </div>
+                <div class="author-media" data-aos="fade-left">
+                    <div class="image-container">
+                        <img alt="Academy Lykova">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ЭКРАН 5: CTA / OFFER -->
+    <section class="cta-section" id="offer">
+        <div class="container">
+            <div class="offer-box" data-aos="zoom-in" data-aos-duration="1000">
+                <div class="badge">Финальный поток года</div>
+                <h2>Станьте уверенным <span>Мастером</span></h2>
+                <p class="sub">Получите полную систему интуитивного чтения раскладов уже сегодня</p>
+                
+                <div class="price-container">
+                    <span class="price-label">Специальная стоимость</span>
+                    <div class="price-value">14 900 ₽</div>
+                </div>
+                
+                <a href="#" class="btn-premium btn-pulse">Занять место на курсе</a>
+                
+                <div class="offer-footer-info">
+                    <div class="info-item">Беспроцентная рассрочка</div>
+                    <div class="info-item">Доступ к материалам на 12 месяцев</div>
+                    <div class="info-item">Поддержка личных кураторов</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Academy Lykova. Все права защищены. Дизайн и разработка выполнены в соответствии с премиальными стандартами индустрии.</p>
         </div>
     </footer>
 
+    <!-- СКРИПТЫ -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Инициализация анимаций при скролле
+        // 1. Инициализация анимаций AOS
         AOS.init({
-            once: true,
-            offset: 50,
-            duration: 800,
-            easing: 'ease-out-cubic',
+            once: false,
+            offset: 80,
+            duration: 900,
+            easing: 'ease-out-cubic'
         });
 
-        // Плавный скролл для кнопок
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // 2. Интерактивные аккордеоны программы
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const content = item.querySelector('.accordion-content');
+                const isActive = item.classList.contains('active');
+                
+                // Закрываем другие открытые модули
+                document.querySelectorAll('.accordion-item').forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                        otherItem.querySelector('.accordion-content').style.maxHeight = '0';
+                        otherItem.querySelector('.accordion-content').style.opacity = '0';
+                    }
+                });
+
+                // Переключаем текущий
+                if (!isActive) {
+                    item.classList.add('active');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.opacity = '1';
+                } else {
+                    item.classList.remove('active');
+                    content.style.maxHeight = '0';
+                    content.style.opacity = '0';
+                }
+            });
+        });
+
+        // 3. Эффект 3D-Tilt для Bento-карточек на десктопе
+        const cards = document.querySelectorAll('.bento-card');
+        if (window.innerWidth > 992) {
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const xc = rect.width / 2;
+                    const yc = rect.height / 2;
+                    
+                    const angleX = (yc - y) / 15;
+                    const angleY = (x - xc) / 15;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-5px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
                 });
             });
+        }
+
+        // 4. Легкий кастомный параллакс для фона Hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const bg = document.getElementById('heroBg');
+            if (bg) {
+                bg.style.transform = `translateY(${scrolled * 0.25}px)`;
+            }
         });
     </script>
 </body>
