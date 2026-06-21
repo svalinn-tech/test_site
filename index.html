@@ -1,444 +1,363 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Таро: Искусство Чтения | Premium Course</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Как читать расклады таро без ошибок? NEW</title>
     
+    <meta property="og:url" content="https://web.academy-lykova.ru/taro_new" />
+    <meta property="og:title" content="Как читать расклады таро без ошибок? NEW" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://thb.tildacdn.com/tild3765-3962-4034-b137-613035376263/Frame_961_1.png" />
+    <link rel="shortcut icon" href="https://static.tildacdn.com/tild6163-3966-4437-a236-353433643135/208.ico" type="image/x-icon"/>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=Manrope:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        /* --- ПЕРЕМЕННЫЕ И БАЗА --- */
+        /* === ПАЛИТРА ИЗ ТВОЕГО КОДА ТИЛЬДЫ === */
         :root {
-            --dark: #0a0a0c;
-            --dark-light: #16161a;
-            --gold: #d4af37;
-            --gold-glow: rgba(212, 175, 55, 0.4);
-            --text-main: #f5f5f7;
-            --text-muted: #a1a1a6;
-            --font-title: 'Playfair Display', serif;
-            --font-text: 'Montserrat', sans-serif;
+            --bg-deep-blue: #0f1c48;
+            --bg-purple: #243caa;
+            --accent-light: #f3e8ff; /* Цвет плашек из твоего кода */
+            --accent-purple: #aba0ff; /* Цвет сфер из твоего кода */
+            --text-main: #ffffff;
+            --text-dark: #000000;
+            --font-heading: 'Cormorant Garamond', serif;
+            --font-body: 'Manrope', sans-serif;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            background-color: var(--dark);
+            font-family: var(--font-body);
             color: var(--text-main);
-            font-family: var(--font-text);
+            background: linear-gradient(135deg, var(--bg-deep-blue) 0%, var(--bg-purple) 100%);
+            background-attachment: fixed;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            line-height: 1.6;
         }
 
-        img { max-width: 100%; height: auto; display: block; }
-        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; }
+        a { text-decoration: none; }
 
-        /* --- КНОПКИ --- */
-        .btn-gold {
+        /* === АБСТРАКТНЫЕ СФЕРЫ (ИЗ ТВОЕГО КОДА filter:blur(50px)) === */
+        .ambient-orbs {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .orb-1 {
+            background-color: var(--accent-purple);
+            width: 600px; height: 600px;
+            top: -10%; left: -10%;
+        }
+        .orb-2 {
+            background-color: rgba(28,0,119,0.8);
+            width: 800px; height: 800px;
+            bottom: -20%; right: -10%;
+            animation-delay: -5s;
+        }
+        .orb-3 {
+            background-color: #5d3ec8;
+            width: 400px; height: 400px;
+            top: 40%; left: 50%;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 30px) scale(1.1); }
+            100% { transform: translate(-30px, 50px) scale(0.9); }
+        }
+
+        /* === КНОПКИ (ДИЗАЙН ПОД ТВОЙ ЦВЕТ #f3e8ff) === */
+        .btn-primary {
             display: inline-flex;
-            justify-content: center;
             align-items: center;
-            padding: 18px 40px;
-            background: linear-gradient(135deg, #f9d976 0%, #e9b646 100%);
-            color: #000;
-            font-weight: 600;
-            font-size: 1rem;
+            justify-content: center;
+            background-color: var(--accent-light);
+            color: var(--text-dark);
+            font-size: 1.125rem;
+            font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border-radius: 100px;
+            padding: 20px 45px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(243, 232, 255, 0.3);
             position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            box-shadow: 0 10px 30px var(--gold-glow);
-            z-index: 1;
         }
-        .btn-gold::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.7s ease;
-            z-index: -1;
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(243, 232, 255, 0.5);
+            background-color: #ffffff;
         }
-        .btn-gold:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
-        }
-        .btn-gold:hover::before { left: 100%; }
 
-        /* --- ГЕРОЙ-СЕКЦИЯ (HERO) С ПАРАЛЛАКСОМ --- */
+        /* === ГЛАВНЫЙ ЭКРАН (HERO) === */
         .hero {
-            position: relative;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            overflow: hidden;
-            padding: 0 20px;
+            padding: 100px 20px;
+            position: relative;
+            z-index: 1;
         }
-        .hero-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 120%;
-            background: url('https://images.unsplash.com/photo-1633519803157-12d7c0886e08?q=80&w=2000&auto=format&fit=crop') center/cover no-repeat;
-            z-index: -2;
-            transform: translateY(0);
-            will-change: transform;
-        }
-        .hero-overlay {
+        
+        /* Фон из твоего кода */
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(10,10,12,0.3) 0%, rgba(10,10,12,1) 100%);
+            background-image: url('https://thb.tildacdn.com/tild3930-3366-4537-b964-353762643236/Frame_688_1.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
             z-index: -1;
+            mix-blend-mode: overlay;
         }
-        .hero-content { z-index: 10; max-width: 900px; }
-        
-        .badge {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pre-title {
             display: inline-block;
-            padding: 8px 20px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            letter-spacing: 3px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 30px;
-            backdrop-filter: blur(10px);
+            color: var(--accent-light);
         }
 
         .hero h1 {
-            font-family: var(--font-title);
-            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 7vw, 5.5rem);
             line-height: 1.1;
-            margin-bottom: 20px;
-            font-weight: 400;
+            margin-bottom: 24px;
+            font-weight: 700;
         }
         .hero h1 span {
             font-style: italic;
-            background: linear-gradient(to right, #fff, var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--accent-purple);
         }
+
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.8;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            opacity: 0.9;
+            max-width: 650px;
+            margin: 0 auto 50px;
         }
 
-        /* --- БЕГУЩАЯ СТРОКА (TICKER) --- */
-        .marquee-wrapper {
-            background: var(--gold);
-            padding: 15px 0;
-            overflow: hidden;
-            display: flex;
-            white-space: nowrap;
-            transform: rotate(-2deg) scale(1.05);
-            margin-top: -30px;
+        /* === СЕКЦИЯ КОНТЕНТА И КАРТИНКА ИЗ ТВОЕГО ОГ-МЕТА === */
+        .about-section {
+            padding: 100px 20px;
             position: relative;
-            z-index: 20;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .marquee {
-            display: flex;
-            animation: scroll 20s linear infinite;
-        }
-        .marquee span {
-            font-family: var(--font-title);
-            font-size: 1.5rem;
-            color: #000;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 0 30px;
-            letter-spacing: 2px;
-        }
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            z-index: 2;
         }
 
-        /* --- СЕКЦИЯ: ИСКУССТВО ЧТЕНИЯ (ФОТО + ТЕКСТ) --- */
-        .section { padding: 120px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        
-        .split-grid {
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 40px;
+            padding: 60px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
         }
-        .text-block h2 {
-            font-family: var(--font-title);
-            font-size: clamp(2rem, 4vw, 3.5rem);
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
             margin-bottom: 30px;
             line-height: 1.2;
         }
-        .text-block p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.8;
+
+        .about-text p {
+            font-size: 1.125rem;
+            opacity: 0.8;
             margin-bottom: 20px;
         }
-        .image-block { position: relative; }
-        .image-block img {
+
+        .about-image {
+            position: relative;
+        }
+        
+        .about-image img {
             border-radius: 20px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            width: 100%;
+            /* Картинка из твоего OG тега, но в хорошем качестве */
+            content: url('https://thb.tildacdn.com/tild3765-3962-4034-b137-613035376263/Frame_961_1.png');
         }
-        .image-block::before {
+
+        .about-image::after {
             content: '';
             position: absolute;
-            top: -20px; left: -20px; right: 20px; bottom: 20px;
-            border: 1px solid var(--gold);
-            border-radius: 20px;
+            inset: -20px;
+            border: 1px solid var(--accent-purple);
+            border-radius: 30px;
             z-index: -1;
+            opacity: 0.5;
             transition: all 0.5s ease;
         }
-        .image-block:hover::before { top: -10px; left: -10px; right: 10px; bottom: 10px; }
-
-        /* --- КАРТОЧКИ: GLASSMORPHISM --- */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 24px;
-            padding: 40px;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease, background 0.4s ease;
-        }
-        .glass-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at top right, rgba(212, 175, 55, 0.1), transparent 70%);
-            pointer-events: none;
-        }
-        .glass-card h3 {
-            font-family: var(--font-title);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--gold);
-        }
-        .glass-card p {
-            color: var(--text-muted);
-            line-height: 1.6;
+        .about-image:hover::after {
+            inset: -10px;
+            opacity: 1;
+            background: rgba(171, 160, 255, 0.1);
         }
 
-        /* --- ГАЛЕРЕЯ / МОДУЛИ (SWIPER) --- */
-        .slider-section {
-            background: var(--dark-light);
-            padding: 100px 0;
+        /* === БЕГУЩАЯ СТРОКА (ВАУ-ЭФФЕКТ) === */
+        .ticker {
+            background: var(--accent-light);
+            color: var(--text-dark);
+            padding: 20px 0;
             overflow: hidden;
-        }
-        .swiper-slide {
-            height: 400px;
-            border-radius: 20px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
             display: flex;
-            align-items: flex-end;
-            padding: 30px;
-        }
-        .swiper-slide::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            border-radius: 20px;
-        }
-        .slide-content {
+            white-space: nowrap;
+            transform: rotate(-2deg) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             position: relative;
-            z-index: 2;
+            z-index: 10;
+            margin: 50px 0;
         }
-        .slide-content h3 {
-            font-family: var(--font-title);
-            font-size: 2rem;
-            margin-bottom: 10px;
+        .ticker-track {
+            display: flex;
+            animation: ticker 15s linear infinite;
         }
-
-        /* --- ФИНАЛЬНЫЙ CTA --- */
-        .cta {
-            text-align: center;
-            padding: 150px 20px;
-            background: radial-gradient(circle at center, #1a1a24 0%, var(--dark) 70%);
+        .ticker-item {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0 40px;
         }
-        .cta h2 {
-            font-family: var(--font-title);
-            font-size: clamp(2.5rem, 5vw, 4.5rem);
-            margin-bottom: 40px;
-        }
-        .price-tag {
-            font-family: var(--font-title);
-            font-size: 3rem;
-            color: var(--gold);
-            display: block;
-            margin-bottom: 40px;
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
-        /* --- АДАПТИВНОСТЬ (MOBILE FIRST ПОДХОД) --- */
-        @media (max-width: 768px) {
-            .split-grid { grid-template-columns: 1fr; gap: 40px; }
-            .image-block::before { display: none; }
-            .hero-bg { background-position: 70% center; }
-            .marquee-wrapper { transform: rotate(-3deg) scale(1.1); margin-top: -20px; }
+        /* === АДАПТИВНОСТЬ (МОБИЛЬНАЯ ВЕРСИЯ) === */
+        @media (max-width: 992px) {
+            .glass-panel {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+                gap: 40px;
+            }
+            .about-image {
+                order: -1; /* Картинка сверху на мобилках */
+            }
+            .orb-1 { width: 400px; height: 400px; }
+            .orb-2 { width: 500px; height: 500px; }
+        }
+
+        @media (max-width: 480px) {
+            .btn-primary { width: 100%; padding: 20px; }
+            .ticker { transform: rotate(-3deg) scale(1.1); margin: 30px 0; }
         }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-bg" id="parallax-bg"></div>
-        <div class="hero-overlay"></div>
-        
-        <div class="hero-content" data-aos="fade-up" data-aos-duration="1500">
-            <div class="badge">Новый поток</div>
-            <h1>Как читать расклады Таро <br><span>без ошибок</span></h1>
-            <p>Премиальный курс по интуитивному чтению карт. Выйдите за рамки книжных трактовок и начните видеть истинную суть поля.</p>
-            <a href="#join" class="btn-gold">Занять место</a>
-        </div>
-    </header>
+    <div class="ambient-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
 
-    <div class="marquee-wrapper">
-        <div class="marquee">
-            <span>Интуиция • Связки арканов • Предсказания • Мастерство • Энергетика • </span>
-            <span>Интуиция • Связки арканов • Предсказания • Мастерство • Энергетика • </span>
-            <span>Интуиция • Связки арканов • Предсказания • Мастерство • Энергетика • </span>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="pre-title">Новый формат 2026</div>
+                <h1>Как читать расклады таро <br><span>без ошибок</span></h1>
+                <p>Academy Lykova представляет: откажитесь от заучивания трактовок. Пробудите интуицию и научитесь видеть истинную картину поля.</p>
+                <a href="#program" class="btn-primary">Присоединиться к курсу</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="ticker">
+        <div class="ticker-track">
+            <div class="ticker-item">АВТОРСКАЯ МЕТОДИКА</div>
+            <div class="ticker-item">✧</div>
+            <div class="ticker-item">ГЛУБОКОЕ ЧТЕНИЕ ПОЛЯ</div>
+            <div class="ticker-item">✧</div>
+            <div class="ticker-item">БЕЗОПАСНОСТЬ ТАРОЛОГА</div>
+            <div class="ticker-item">✧</div>
+            <div class="ticker-item">АВТОРСКАЯ МЕТОДИКА</div>
+            <div class="ticker-item">✧</div>
+            <div class="ticker-item">ГЛУБОКОЕ ЧТЕНИЕ ПОЛЯ</div>
+            <div class="ticker-item">✧</div>
+            <div class="ticker-item">БЕЗОПАСНОСТЬ ТАРОЛОГА</div>
+            <div class="ticker-item">✧</div>
         </div>
     </div>
 
-    <section class="section">
-        <div class="container split-grid">
-            <div class="text-block" data-aos="fade-right">
-                <h2>Пробудите свой <span>дар</span></h2>
-                <p>Большинство новичков боятся "чистого листа" или негативных карт. Они зубрят значения, но не видят истории целиком.</p>
-                <p>На этом курсе мы используем авторскую методику погружения. Вы научитесь считывать связки арканов мгновенно, доверяя своему подсознанию, а не шпаргалкам.</p>
-            </div>
-            <div class="image-block" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1620052579541-ce921b777aee?q=80&w=1000&auto=format&fit=crop" alt="Магия Таро">
-            </div>
-        </div>
-    </section>
-
-    <section class="section" style="padding-top: 0;">
+    <section class="about-section" id="program">
         <div class="container">
-            <h2 style="text-align: center; font-family: var(--font-title); font-size: 3rem; margin-bottom: 20px;" data-aos="fade-up">Что внутри программы</h2>
-            
-            <div class="cards-grid">
-                <div class="glass-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3>01. Чувствование</h3>
-                    <p>Медитативные практики для настройки на колоду. Как перестать сомневаться и начать слышать карты.</p>
+            <div class="glass-panel" data-aos="fade-up" data-aos-duration="1000">
+                <div class="about-text" data-aos="fade-right" data-aos-delay="200">
+                    <h2>Больше никаких <br><span style="color: var(--accent-purple); font-style: italic;">страхов</span> перед картами</h2>
+                    <p>Мы полностью переработали подход к обучению. Вы получите не просто словарь значений, а систему, которая работает на уровне энергии и подсознания.</p>
+                    <p>Этот курс создан для тех, кто хочет читать расклады уверенно, экологично и максимально точно для своих кверентов.</p>
+                    <br>
+                    <a href="#" class="btn-primary" style="padding: 15px 35px; font-size: 1rem;">Узнать подробности</a>
                 </div>
-                <div class="glass-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3>02. Связи Арканов</h3>
-                    <p>Глубокий анализ сочетаний. Как карты меняют значение в зависимости от соседей в раскладе.</p>
-                </div>
-                <div class="glass-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3>03. Защита поля</h3>
-                    <p>Энергетическая безопасность таролога. Защита от истощения и токсичных клиентов.</p>
+                <div class="about-image" data-aos="fade-left" data-aos-delay="400">
+                    <img alt="Расклады Таро Lykova Academy">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="slider-section" data-aos="fade-in">
+    <footer style="text-align: center; padding: 40px 20px; opacity: 0.6; font-size: 0.875rem; position: relative; z-index: 2;">
         <div class="container">
-            <h2 style="font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 40px; text-align: center;">Атмосфера обучения</h2>
-            
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1518531933037-91b2f5f228f4?q=80&w=800&auto=format&fit=crop');">
-                        <div class="slide-content">
-                            <h3>Практика</h3>
-                            <p>Реальные расклады каждую неделю</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1515005886367-932d431c19b6?q=80&w=800&auto=format&fit=crop');">
-                        <div class="slide-content">
-                            <h3>Комьюнити</h3>
-                            <p>Закрытый клуб единомышленников</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide" style="background-image: url('https://images.unsplash.com/photo-1601412436009-d964bd02edbc?q=80&w=800&auto=format&fit=crop');">
-                        <div class="slide-content">
-                            <h3>Наставничество</h3>
-                            <p>Личный разбор ваших ошибок</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p>&copy; 2026 Academy Lykova. Все права защищены. Разработано с фокусом на конверсию.</p>
         </div>
-    </section>
+    </footer>
 
-    <section class="cta" id="join">
-        <div class="container" data-aos="zoom-in" data-aos-duration="1000">
-            <div class="badge">Количество мест ограничено</div>
-            <h2>Готовы стать <br><span style="color: var(--gold); font-style: italic;">Мастером?</span></h2>
-            <span class="price-tag">14 900 ₽</span>
-            <a href="#" class="btn-gold" style="font-size: 1.2rem; padding: 22px 60px;">Иду на курс</a>
-            <p style="margin-top: 30px; color: var(--text-muted); font-size: 0.9rem;">Оплата картой любого банка мира • Рассрочка 0%</p>
-        </div>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
-    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script>
         // Инициализация анимаций при скролле
         AOS.init({
-            once: false, // Анимация проигрывается при каждом скролле
-            offset: 100, // Смещение в px
+            once: true,
+            offset: 50,
             duration: 800,
             easing: 'ease-out-cubic',
         });
 
-        // Инициализация слайдера с каруселью
-        var swiper = new Swiper(".mySwiper", {
-            slidesPerView: 1,
-            spaceBetween: 20,
-            loop: true,
-            autoplay: {
-                delay: 3000,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                640: { slidesPerView: 2, spaceBetween: 20 },
-                1024: { slidesPerView: 3, spaceBetween: 30 },
-            },
-        });
-
-        // Эффект плавного параллакса для главной картинки при скролле
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const parallaxBg = document.getElementById('parallax-bg');
-            if(parallaxBg) {
-                // Двигаем фон в 2 раза медленнее скролла
-                parallaxBg.style.transform = 'translateY(' + (scrolled * 0.4) + 'px)';
-            }
-        });
-
-        // Плавная прокрутка для якорных ссылок
+        // Плавный скролл для кнопок
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
